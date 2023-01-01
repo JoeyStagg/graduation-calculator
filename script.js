@@ -76,10 +76,15 @@ function calculations() {
         }
     }
     var season = semester(finishMonth);
-    var outputString = "You will finish in " + numSemesters + " semesters in " + season + " " + finishYear;
+    var outputString = "You will finish in " + numSemesters + " semester(s) in ";
+    var lastString = season + " " + finishYear
     console.log(outputString);
     console.log(summerClass);
     document.getElementById("show-output").innerHTML = outputString;
+    document.getElementById("second-output").innerHTML = lastString;
 
 }
+
+
+
 
