@@ -1,14 +1,22 @@
 h1,
-p,
 form {
     text-align: center;
 }
 
 fieldset {
-    border: 0;
+    border: none;
+
 }
 
 div {
-    background-color: bisque;
-    width: 300px;
+    background-color: lightskyblue;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+
+}
+
+p {
+    margin: 30px;
+    margin-bottom: 0;
 }
