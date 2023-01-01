@@ -27,8 +27,6 @@ input {
     background-color: #296d98;
     color: white;
     border-color: #296d98;
-
-
 }
 
 h3 {
@@ -81,5 +79,4 @@ p {
 h3[name="season-year"] {
     margin-bottom: 20px;
     margin-top: -15px;
-
 }
