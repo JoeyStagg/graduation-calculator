@@ -52,7 +52,8 @@ div {
 .bubbles {
     width: unset;
     margin: 0;
-    margin-right: 0.5em;
+    margin-left: 1em;
+    margin-right: 0.2em;
     vertical-align: middle;
 }
 
