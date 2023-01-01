@@ -11,7 +11,7 @@ function semester(month) {
     return currentMonth;
 }
 
-
+/* */
 function calculations() {
     //These are the values the user inputs into the website
     var creditsLeft = document.getElementById("credits-left").value;
