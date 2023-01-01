@@ -3,6 +3,10 @@ form {
     text-align: center;
 }
 
+h3 {
+    text-align: center;
+}
+
 fieldset {
     border: none;
 
@@ -10,13 +14,19 @@ fieldset {
 
 div {
     background-color: lightskyblue;
-    margin: 50px;
+    margin: 0% 20%;
     display: flex;
     justify-content: center;
     color: black;
+    border-radius: 10px;
 }
 
 p {
     margin: 30px;
     margin-bottom: 0;
+}
+
+body {
+    background-color: cornflowerblue;
+    color: cornsilk;
 }
