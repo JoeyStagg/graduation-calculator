@@ -1,7 +1,14 @@
-h1 {
+h1,
+p,
+form {
     text-align: center;
 }
 
-label {
-    display: block;
+fieldset {
+    border: 0;
+}
+
+div {
+    background-color: bisque;
+    width: 300px;
 }

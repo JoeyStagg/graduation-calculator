@@ -11,16 +11,25 @@
 
 <body>
     <h1>Gradutation Calculator</h1>
-    <p>How many credits do you have left?</p>
-    <input type="number" required min="1">
-    <p>How many credits do you want to take per semester?</p>
-    <input type="number" required min="1">
-    <p>Will you be taking summer semesters?</p>
-    <fieldset>
-        <label for="yes"><input id="yes" type="radio" required name="summers">Yes</label>
-        <label for="no"><input id="no" type="radio" requred name="summers">No</label>
-    </fieldset>
-    <input type="submit" value="Submit">
+    <div>
+        <form>
+
+            <p>How many credits do you have left?</p>
+            <input type="number" required min="1" placeholder="Credits Left" id="credits-left">
+            <p>How many credits do you want to take per semester?</p>
+            <input type="number" required min="1" placeholder="Credits Per Semester" id="credits-per-semester">
+            <p>Will you be taking summer semesters?</p>
+            <fieldset>
+                <label for="yes"><input id="yes" type="radio" required name="summers">Yes</label>
+                <label for="no"><input id="no" type="radio" requred name="summers">No</label>
+            </fieldset>
+            <input type="button" value="Submit" onclick={calculations()}>
+        </form>
+        <h3 id="show-output"></h3>
+    </div>
+
+    <script src="script.js"></script>
+
 </body>
 
 </html>
