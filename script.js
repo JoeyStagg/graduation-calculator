@@ -1,16 +1,27 @@
-//This is used to figure out which semester youre in based on the month
-function semester(month) {
-    var currentMonth = "Spring";
-    if (month >= 1 && month <= 4) {
-        currentMonth = "Spring";
-    } else if (month >= 5 && month <= 8) {
-        currentMonth = "Summer";
-    } else if (month >= 9 && month <= 12) {
-        currentMonth = "Fall";
+//This is used to figure out which semester is the next semester based on the month
+function nextSemester(month, summer) {
+    var semesters = ["Spring", "Summer", "Fall"];
+    var nextMonth;
+    if (month > 12) {
+        month -= 12;
     }
-    return currentMonth;
+    if (summer) {
+        if (month >= 1 && month <= 4) {
+            nextMonth = semesters[1];
+        } else if (month >= 5 && month <= 8) {
+            nextMonth = semesters[2];
+        } else if (month >= 9 && month <= 12) {
+            nextMonth = semesters[0];
+        }
+    } else {
+        if (month >= 1 && month <= 8) {
+            nextMonth = semesters[2];
+        } else if (month >= 9 && month <= 12) {
+            nextMonth = semesters[0];
+        }
+    }
+    return nextMonth;
 }
-
 
 function calculations() {
     //These are the values the user inputs into the website
@@ -24,9 +35,8 @@ function calculations() {
     }
 
     //Determines if the user wants to take summer semesters
-    var summerAnswerYes = document.getElementById("yes").checked;
     var summerClass = false;
-    if (summerAnswerYes == true) {
+    if (document.getElementById("yes").checked) {
         summerClass = true;
     }
 
@@ -36,38 +46,27 @@ function calculations() {
     var currentYear = currentDate.getFullYear();
     var finishYear = currentYear;
     var finishMonth = currentMonth;
-    var firstNextSemester = semester(currentMonth);
 
-    //Looks at if youre taking summers and calculates the semester that you are going to end in accordingly
+    //Looks at if youre taking summers and calculates your last semester accordingly
     if (summerClass) {
-        for (var i = 1; i <= numSemesters; i++) {
-            finishMonth = finishMonth + 4;
+        for (var i = 0; i < numSemesters; i++) {
+            finishMonth += 4;
             if (finishMonth > 12) {
                 finishMonth -= 12;
                 finishYear++;
             }
         }
     } else {
-        if (firstNextSemester == "Fall") {
+        if (nextSemester(finishMonth, summerClass) == "Fall") {
             for (var i = 0; i < numSemesters; i++) {
-                if (i % 2 == 0) {
-                    finishMonth = finishMonth + 4;
-                } else {
-                    finishMonth = finishMonth + 8;
-                }
-                if (finishMonth > 12) {
-                    finishMonth -= 12;
-                    finishYear++;
-                }
-            }
-        } else {
-            if (firstNextSemester == "Spring") {
-                for (var i = 0; i < numSemesters; i++) {
-                    if (i % 2 == 0) {
-                        finishMonth = finishMonth + 8;
-                    } else {
-                        finishMonth = finishMonth + 4;
+                if (nextSemester(finishMonth, summerClass) == "Fall") {
+                    finishMonth += 4;
+                    if (finishMonth > 12) {
+                        finishMonth -= 12;
+                        finishYear++;
                     }
+                } else if (nextSemester(finishMonth, summerClass) == "Spring") {
+                    finishMonth += 8;
                     if (finishMonth > 12) {
                         finishMonth -= 12;
                         finishYear++;
@@ -78,15 +77,11 @@ function calculations() {
     }
 
     //Prints result of calculations
-    var season = semester(finishMonth);
+    var season = nextSemester(finishMonth + 4);
     var outputString = "You will finish in " + numSemesters + " semester(s) in ";
     var lastString = season + " " + finishYear
-    console.log(outputString);
-    console.log(summerClass);
     document.getElementById("show-output").innerHTML = outputString;
     document.getElementById("second-output").innerHTML = lastString;
 }
-
-
 
 
