@@ -1,4 +1,4 @@
-<--code by Joey Stagg -->
+//code by Joey Stagg
 
 //This is used to figure out which semester is the next semester based on the month
 function nextSemester(month, summer) {
