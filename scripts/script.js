@@ -1,6 +1,6 @@
 //This is used to figure out which semester youre in based on the month
 function semester(month) {
-    var currentMonth = "Spring";
+    var currentMonth = "";
     if (month >= 1 && month <= 4) {
         currentMonth = "Spring";
     } else if (month >= 5 && month <= 8) {
@@ -33,10 +33,28 @@ function calculations() {
     //Gets current month for semester calculation
     const currentDate = new Date();
     var currentMonth = currentDate.getMonth() + 1;
+    var newMonth = currentMonth;
     var currentYear = currentDate.getFullYear();
     var finishYear = currentYear;
     var finishMonth = currentMonth;
-    var firstNextSemester = semester(currentMonth);
+    var firstNextSemester = semester(currentMonth)
+    if (semester(currentMonth) == "Spring") {
+        newMonth = currentMonth + 8;
+        if (newMonth > 12) {
+            newMonth -= 12;
+        }
+        firstNextSemester = semester(newMonth);
+        console.log("first sem" + firstNextSemester);
+    }
+    if (semester(currentMonth) == "Fall" || semester(currentMonth) == "Summer") {
+        newMonth = currentMonth + 4;
+        if (newMonth > 12) {
+            newMonth -= 12;
+        }
+        firstNextSemester = semester(newMonth);
+        console.log("first sem" + firstNextSemester);
+    }
+
 
     //Looks at if youre taking summers and calculates the semester that you are going to end in accordingly
     if (summerClass) {
@@ -48,7 +66,7 @@ function calculations() {
             }
         }
     } else {
-        if (firstNextSemester == "Fall") {
+        if (firstNextSemester == "Spring") {
             for (var i = 0; i < numSemesters; i++) {
                 if (i % 2 == 0) {
                     finishMonth = finishMonth + 4;
@@ -59,18 +77,40 @@ function calculations() {
                     finishMonth -= 12;
                     finishYear++;
                 }
+                console.log("finish month" + " " + finishMonth + " " + finishYear)
             }
         } else {
-            if (firstNextSemester == "Spring") {
-                for (var i = 0; i < numSemesters; i++) {
-                    if (i % 2 == 0) {
-                        finishMonth = finishMonth + 8;
-                    } else {
-                        finishMonth = finishMonth + 4;
+            if (firstNextSemester == "Fall") {
+                console.log("curr" + " " + currentMonth)
+                if (semester(currentMonth) == "Summer") {
+                    finishMonth = finishMonth + 4;
+                    for (var i = 0; i < numSemesters - 1; i++) {
+                        if (i % 2 == 0) {
+                            finishMonth = finishMonth + 4;
+                        } else {
+                            finishMonth = finishMonth + 8;
+                        }
+                        if (finishMonth > 12) {
+                            finishMonth -= 12;
+                            finishYear++;
+                        }
+                        console.log("finish month" + " " + finishMonth + " " + finishYear)
+
                     }
-                    if (finishMonth > 12) {
-                        finishMonth -= 12;
-                        finishYear++;
+                }
+                else {
+                    for (var i = 0; i < numSemesters; i++) {
+                        if (i % 2 == 0) {
+                            finishMonth = finishMonth + 8;
+                        } else {
+                            finishMonth = finishMonth + 4;
+                        }
+                        if (finishMonth > 12) {
+                            finishMonth -= 12;
+                            finishYear++;
+                        }
+                        console.log("finish month" + " " + finishMonth + " " + finishYear)
+
                     }
                 }
             }
@@ -83,6 +123,7 @@ function calculations() {
     var lastString = season + " " + finishYear
     console.log(outputString);
     console.log(summerClass);
+    console.log(finishYear);
     document.getElementById("show-output").innerHTML = outputString;
     document.getElementById("second-output").innerHTML = lastString;
 }

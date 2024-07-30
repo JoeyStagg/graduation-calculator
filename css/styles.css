@@ -54,6 +54,7 @@ form {
     background-color: #e7e7e7;
     padding: .5em 1em;
     margin: 1em;
+    line-height: 1.5em;
 }
 
 #note h3 {
@@ -77,6 +78,11 @@ footer {
     color: #fff;
     padding: 2em 1em;
     text-align: center;
+}
+
+.version {
+    font-size: .75em;
+    float: left;
 }
 
 /* Style rules for tablet viewport */
